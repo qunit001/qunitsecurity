@@ -1,0 +1,23 @@
+# Qunit Security — Apache config (GoDaddy / cPanel)
+
+# Default page
+DirectoryIndex index.html
+
+# Show our styled 404 page for any unknown URL
+ErrorDocument 404 /404.html
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Light caching for static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>
