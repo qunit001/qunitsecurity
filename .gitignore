@@ -6,8 +6,10 @@
 __pycache__/
 *.pyc
 
-# Node
+# Node — not a Node project; keep Vercel from attempting a build
 node_modules/
+package.json
+package-lock.json
 
 # Internal deliverables — NOT part of the public website
 letterhead/
